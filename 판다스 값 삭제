@@ -1,0 +1,8 @@
+import pandas as pd
+
+df = pd.DataFrame({'안덱스' : ['하나', '둘', '셋'],
+                   '이름' : ['홍길동', '마이클', '젝'],
+                   '나이' : [10 ,20 ,100]});
+df
+df_drop = df.drop(0)  #0번째 값 삭제
+df_drop
