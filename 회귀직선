@@ -1,0 +1,36 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def linear_regression(x, y):
+    n = len(x)
+    x_mean = np.mean(x)
+    y_mean = np.mean(y)
+    
+    # 회귀직선의 기울기와 절편 계산
+    numerator = sum((x - x_mean) * (y - y_mean))
+    denominator = sum((x - x_mean) ** 2)
+    slope = numerator / denominator
+    intercept = y_mean - (slope * x_mean)
+    
+    return slope, intercept
+
+# 사용자로부터 입력 받기
+n = int(input("데이터 포인트의 개수를 입력하세요: "))
+
+x = []
+y = []
+for i in range(n):
+    point = input("x, y 값을 입력하세요 (예: 1 2): ").split()
+    x.append(float(point[0]))
+    y.append(float(point[1]))
+
+# 회귀직선 계산
+slope, intercept = linear_regression(np.array(x), np.array(y))
+
+# 회귀직선 그리기
+plt.scatter(x, y, color='b', label='데이터 포인트')
+plt.plot(x, slope * np.array(x) + intercept, color='r', label='회귀직선')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
+plt.show()
