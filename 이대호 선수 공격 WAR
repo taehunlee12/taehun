@@ -1,0 +1,27 @@
+def calculate_batting_war(hits, doubles, triples, home_runs, walks, plate_appearances, stolen_bases, caught_stealing, league_average_war):
+    # 타격에 대한 War 계산
+    batting_runs = (hits - doubles - triples - home_runs) + (1.8 * doubles) + (2.2 * triples) + (3.3 * home_runs) + (0.72 * walks) + (0.6 * stolen_bases) - (0.6 * caught_stealing)
+    batting_runs_above_average = (batting_runs / plate_appearances) * 600
+    batting_war = batting_runs_above_average / 10
+
+    # 리그 평균 War 조정
+    adjusted_batting_war = batting_war - league_average_war
+
+    return adjusted_batting_war
+
+# 이대호 선수의 타격 데이터
+hits = [173, 181, 138, 158, 120, 179]
+doubles = [13, 30, 23, 27, 11, 23]
+triples = [0, 0, 1, 0, 0, 0]
+home_runs = [34, 37, 16, 20, 19	, 23]
+walks = [50, 40, 55, 48, 42, 38]
+plate_appearances = [608, 604	, 549, 611, 465,591]  #타석에 선 횟수
+stolen_bases = [1, 0, 0, 1, 0, 0]
+caught_stealing = [1, 1, 0, 0, 0,0]
+league_average_war = 2.0
+
+# War 계산 및 출력
+for i in range(len(hits)):
+    war = calculate_batting_war(hits[i], doubles[i], triples[i], home_runs[i], walks[i], plate_appearances[i], stolen_bases[i], caught_stealing[i], league_average_war)
+    year = 2017 + i
+    print(f"{year}년 War: {war:.2f}")
