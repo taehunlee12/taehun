@@ -1,0 +1,24 @@
+import pandas as pd
+
+# 사용자로부터 데이터 입력 받기
+data = []
+while True:
+    entry = input("데이터를 입력하세요 (종료하려면 q를 입력하세요): ")
+    if entry == 'q':
+        break
+    data.append(entry)
+
+# 데이터프레임 생성
+df = pd.DataFrame(data, columns=['데이터'])
+
+# 데이터프레임 출력
+print("입력된 데이터:")
+print(df)
+
+# 데이터프레임 정리 작업 수행
+# 예시로 데이터의 길이를 계산하여 새로운 열 추가
+df['데이터 길이'] = df['데이터'].apply(len)
+
+# 정리된 데이터프레임 출력
+print("정리된 데이터:")
+print(df)
